@@ -15,9 +15,21 @@ const Topping = ({ topping, additionalTopping, settAdditionalTopping }) => {
   //handle topping
   const handleTopping = () => {
     if (isChecked) {
-      
+      // use set to ensure unique values
+      const newToppings = new Set([...additionalTopping, {...topping }])
+      settAdditionalTopping(Array.from(newTopping))
+    } else {
+      // remove the topping with the matching name
+      const newToppings = additionalTopping.filter((toppingObj) => {
+        return toppingObj.name !== topping.name
+      })
+      settAdditionalTopping(newToppings)
     }
   }
+
+  useEffect(() => {
+    handleTopping()
+  },[isChecked]) 
   return (
     <div className={`${isChecked && 'border-orange'} w-full max-w-[110px] h-[140px] p-1 flex flex-col
     items-center justify-center border rounded-md bg-white relative`}
