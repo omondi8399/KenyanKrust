@@ -1,10 +1,11 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect, useContext } from 'react'
 
 import Image from 'next/image'
 
 import SizeSelection from './SizeSelection';
 import CrustSelection from './CrustSelection';
 import Topping from './Topping';
+import { CartContext } from '../context/CartContext';
 
 const PizzaDetails = ({ pizza }) => {
 
@@ -13,6 +14,7 @@ const PizzaDetails = ({ pizza }) => {
   const [additionalTopping, setAdditionalTopping] = useState([])
   const [additionalToppingPrice, setAdditionalToppingPrice] = useState(0)
   const [price, setPrice] = useState(0)
+  const { addToCart } = useContext(CartContext)
 
   useEffect(() => {
     size === 'small' ? setPrice(parseFloat(pizza.priceSm + additionalToppingPrice).toFixed(2))  :
@@ -84,7 +86,8 @@ const PizzaDetails = ({ pizza }) => {
           </div>
           {/* add to cart btn */}
           <div className='h-full flex items-center px-2 lg:items-end'>
-            <button className='btn btn-lg gradient w-full flex justify-center gap-x-2'>
+            <button onClick={() => addToCart(pizza.id, pizza.image, pizza.name, price, additionalTopping, size, crust)} 
+            className='btn btn-lg gradient w-full flex justify-center gap-x-2'>
               <div> Add to cart for </div>
               <div>$ {price}</div>
             </button>
