@@ -11,14 +11,14 @@ const Nav = () => {
     <nav className="absolute w-full py-8 bg-pink-50/30">
       <div className="container mx-auto flex flex-col lg:flex-row gap-y-3 justify-between items-center">
         {/* logo */}
-        <Link href='#' className="max-w-[160px] lg:max-w-max">
-          <Image src={'/public/logo.svg'} width={180} height={180} alt="" />
+        <Link href='#' className="lg:max-w-max ">
+          <h1 className="text-6xl  lg:text-8xl font-bangers drop-shadow-md">KenyanKrust</h1>
         </Link>
         {/* phone & cart */}
         <div className="flex gap-x-8 items-center">
           {/* phone */}
           <div className="flex gap-x-3 items-center">
-            <Image src={'/public/phone.svg'} width={42} height={42} alt="" />
+            <Image src={'/phone.svg'} width={42} height={42} alt="" />
             <div className="text-white">
               <div className="font-robotoCondensed uppercase font-medium leading-none text-sm">24/7 Pizza delivery service</div>
             </div>
