@@ -8,8 +8,8 @@ const Footer = () => {
       <div className='container mx-auto'>
         <div className='flex flex-col items-center gap-y-6 justify-center'>
           {/* logo */}
-          <Link href={'#'}>
-            <Image src={'/public/logo.svg'} width={180} height={180} alt='' />
+          <Link href='#'>
+          <h1 className="text-6xl  lg:text-8xl font-bangers drop-shadow-md">KenyanKrust</h1>
           </Link>
           {/* social icons */}
           <div className='flex gap-x-6 text-xl text-white'>
