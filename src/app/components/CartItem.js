@@ -1,10 +1,14 @@
 import Image from "next/image";
+import { useContext } from "react";
 import { BiPlus } from "react-icons/bi";
 import { BiMinus } from "react-icons/bi";
 import { IoCloseOutline } from "react-icons/io5";
+import { CartContext } from "../context/CartContext";
 
 
 const CartItem = () => {
+    const { removeItem, increaseAmount, decreaseAmount } = useContext(CartContext)
+
   return (
     <div className="select-none">
       <div className="flex gap-x-4 mb-2">
@@ -24,14 +28,16 @@ const CartItem = () => {
             {/* quantity controls */}
             <div className="flex items-center gap-x-1">
               {/* decrease quantity */}
-              <div className="w-[18px] h-[18px] flex justify-center items-center cursor-pointer text-white 
+              <div onClick={() => decreaseAmount(pizza.id, pizza.price)} 
+              className="w-[18px] h-[18px] flex justify-center items-center cursor-pointer text-white 
               gradient rounded-full">
                 <BiMinus />
               </div>
               {/* pizza amount */}
-              <div className="font-semibold flex flex-1 max-w-[30px] justify-center items-center text-sm">1</div>
+              <div className="font-semibold flex flex-1 max-w-[30px] justify-center items-center text-sm">{pizza.amount}</div>
               {/* increase quantity */}
-              <div className="w-[18px] h-[18px] flex justify-center items-center cursor-pointer text-white 
+              <div onClick={() => increaseAmount(pizza.id, pizza.price)}
+              className="w-[18px] h-[18px] flex justify-center items-center cursor-pointer text-white 
               gradient rounded-full">
                 <BiPlus />
               </div>
@@ -40,7 +46,8 @@ const CartItem = () => {
         </div>
         <div className="flex flex-col justify-between">
           {/* remove item */}
-          <div className="text-2xl flex justify-center items-center self-end cursor-pointer hover:scale-110 duration-100
+          <div onClick={() => removeItem(pizza.id, pizza.price, pizza.crust)}
+          className="text-2xl flex justify-center items-center self-end cursor-pointer hover:scale-110 duration-100
           transition-all text-orange">
             <IoCloseOutline />
           </div>
