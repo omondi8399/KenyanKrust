@@ -9,6 +9,7 @@ import CartTop from './CartTop';
 import { CartContext } from '../context/CartContext';
 
 const CartDesktop = () => {
+  const { isOpen, setIsOpen } = useContext(CartContext)
   return (
     <div className={`${
       isOpen ? 'left-0' : 'left-full'
@@ -23,6 +24,8 @@ const CartDesktop = () => {
           return <CartItem pizza={pizza} key={index} />
         })}
       </div>
+      {/* cart bottom */}
+      <CartBottom />
     </div>
   )
 };
